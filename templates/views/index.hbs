@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+    <title>GoonJ</title>
+</head>
+<body>
+  <section>
+    <header>
+    {{>navbar}}
+    </header>
+
+     <div class="content">
+            <div class="contentBx">
+
+                <h2>Raise funds online for medical emergencies and social causes</h2>
+                <p>The COVID-19 pandemic has shown us how challenging it is for children in rural and semi-urban areas to access quality education, whether online or offline. The effect of the lockdown has brought education to a standstill for millions of rural children.</p>
+                <a href="https://rzp.io/l/k3XQr09O7Y">Donate Now</a>
+                <form>
+            </div>
+        </div>
+    </div>
+  </section>
+
+    <div class="container-fluid mt-5 newclass" id="aboutid" >
+      <center>
+            <div class="container">
+                
+
+                
+                <div class="about-detail">
+                    <h1>About Us</h1>
+                    <p>Raise funds online for medical emergencies and social causes
+    
+                    </p>
+                   <p>Crowdfunding can be a quick and easy way to meet unanticipated, pressing needs. Today, anyone with a smartphone can participate in making a difference with great ease. More and more people are now raising funds online to tackle emergencies more efficiently.</p> 
+                </div>
+                <button class="btn">Learn More</button>
+            </div>
+
+
+        </center>
+    </div>
+    
+
+  <div class="container-fluid mt-5 newclass3">
+    {{>donate}}
+    </div>
+
+  <div class="container-fluid mt-5 newclass2">
+    {{>contact}}
+  </div>
+
+
+  <script src="../jq/jquery.js" type="text/javascript"></script>
+  <script src="../js/bootstrap.js" type="text/javascript"></script>  
+  <script>
+    axios.post('/order').then((info)=>{
+      console.log(info)
+
+      var options = {
+          "key": "rzp_test_93WN8nN3hjYdtC", // Enter the Key ID generated from the Dashboard
+          "name": "GoonJ.org",
+          "description": "Test Transaction",
+          "image": "https://example.com/your_logo",
+          "order_id": info.data.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+          "callback_url": "/is-order-complete",
+          "theme": {
+              "color": "#3399cc"
+          }
+      };
+
+      var rzp1 = new Razorpay(options);
+      document.getElementById('rzp-button1').onclick = function(e){
+          rzp1.open();
+          e.preventDefault();
+      }
+
+
+
+
+
+    })
+
+  </script>
+
+</body>
+</html>
